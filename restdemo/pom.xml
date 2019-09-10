@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.samsad</groupId>
-    <artifactId>demorest</artifactId>
+    <artifactId>restdemo</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demorest</name>
+    <name>restdemo</name>
 
     <build>
-        <finalName>demorest</finalName>
+        <finalName>restdemo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -44,49 +44,27 @@
             <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
             <!-- artifactId>jersey-container-servlet</artifactId -->
         </dependency>
-         <dependency>
-            <groupId>com.sun.activation</groupId>
-            <artifactId>javax.activation</artifactId>
-            <version>${javax.activation.version}</version>
-        </dependency>
-        
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.api.version}</version>
-        </dependency>
- 
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>${jaxb.api.version}</version>
-        </dependency>
- 
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>${jaxb.api.version}</version>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
         </dependency>
         
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
+            <artifactId>jersey-media-json-binding</artifactId>
         </dependency>
         
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.18</version>
+    <version>8.0.17</version>
 </dependency>
+		
         
-       
+        
     </dependencies>
     <properties>
-        <jersey.version>2.16</jersey.version>
+        <jersey.version>2.29</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javax.activation.version>1.2.0</javax.activation.version>
-        <jaxb.api.version>2.3.0</jaxb.api.version>
-        <lombok.version>1.18.6</lombok.version>        
     </properties>
 </project>

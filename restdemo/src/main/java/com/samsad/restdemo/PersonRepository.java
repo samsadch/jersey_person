@@ -1,4 +1,4 @@
-package com.samsad.demorest;
+package com.samsad.restdemo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +10,15 @@ public class PersonRepository {
 	Connection con = null;
 	
 	public PersonRepository() {
-		String url = "jdbc:mysql://localhost:3306/demorest";
+		String url = "jdbc:mysql://localhost:3306/test";
+		String JdbcURL = "jdbc:mysql://localhost:3306/test?useSSL=false";
 		String username = "root";
-		String password = "123";
+		String password = "samsad";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(url,username,password);
+			//con = DriverManager.getConnection(JdbcURL +
+				//                                   "user=root&password=samsad");
 		}
 		catch(Exception e) {
 			System.out.print(e.getMessage());
@@ -25,7 +28,7 @@ public class PersonRepository {
 	
 	public List<Person> getPersons(){
 		List<Person> personList = new ArrayList<>();
-		String sql = "select * from person";
+		String sql = "SELECT * from person";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -33,7 +36,7 @@ public class PersonRepository {
 				Person p = new Person();
 				p.setId(rs.getInt(1));
 				p.setName(rs.getString(2));
-				p.setPhone(rs.getString(2));
+				p.setPhone(rs.getString(4));
 				p.setEmail(rs.getString(3));
 				
 				personList.add(p);
@@ -56,32 +59,34 @@ public class PersonRepository {
 			while(rs.next()) {				
 				person.setId(rs.getInt(1));
 				person.setName(rs.getString(2));
-				person.setPhone(rs.getString(2));
-				person.setEmail(rs.getString(3));		
+				person.setEmail(rs.getString(3));
+				person.setPhone(rs.getString(4));		
 			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			System.out.print(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return person;
 	}
 
 	public void create(Person person) {
-		String sql = "insert into person where values(?,?,?,?)";
+		String sql = "insert into person values(?,?,?,?)";
+
+		System.out.println("insert into");
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, person.getId());
 			st.setString(2, person.getName());
-			st.setString(3, person.getPhone());
-			st.setString(4, person.getEmail());
+			st.setString(3, person.getEmail());
+			st.setString(4, person.getPhone());
+			st.executeUpdate();
 			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			System.out.print(e.getMessage());
-		}
-		
+			System.out.println(e.getMessage());
+		}		
 		
 	}
 
